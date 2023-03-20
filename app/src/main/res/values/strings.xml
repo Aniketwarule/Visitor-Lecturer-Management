@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">UVAA</string>
+    <string name="login_page">Login Page</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="todo">TODO</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="enter_name">Enter Name:</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="code">code</string>
+    <string name="name">Name</string>
+    <string name="mobile_no">Mobile no:</string>
+    <string name="email">Email:</string>
+    <string name="department">Department</string>
+    <string name="Mobile">mobile no</string>
+    <string name="Email">Email</string>
+    <string name="dept_name">Dept_name</string>
+    <string name="signup">Signup</string>
+    <string name="welcome_to_uvaa">Welcome to UVAA</string>
+    <string name="Login">Login</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="or">or</string>
+    <string name="Todo">TODO</string>
+</resources>
