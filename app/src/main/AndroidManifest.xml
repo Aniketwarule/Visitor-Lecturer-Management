@@ -12,11 +12,23 @@
         android:theme="@style/Theme.UVAA"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity7"
+            android:exported="false"
+            android:label="Seventh Activity"
+            android:parentActivityName=".MainActivity6"/>
+        <activity
+            android:name=".MainActivity6"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity5"
+            android:exported="false"
+            android:label="Fifth Activity"
+            android:parentActivityName=".MainActivity4" />
+        <activity
             android:name=".MainActivity4"
             android:exported="false"
             android:label="Fourth Activity"
-            android:parentActivityName=".MainActivity2"
-            />
+            android:parentActivityName=".MainActivity3" />
         <activity
             android:name=".MainActivity3"
             android:exported="false"
@@ -26,7 +38,7 @@
             android:name=".MainActivity2"
             android:exported="false"
             android:label="Second Activity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity4" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

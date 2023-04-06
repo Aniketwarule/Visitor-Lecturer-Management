@@ -13,6 +13,11 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
     }
+    public void show(View v)
+    {
+        Intent i=new Intent(this,MainActivity4.class);
+        startActivity(i);
+    }
 
 
 
