@@ -23,4 +23,11 @@
     <string name="sign_up">Sign-up</string>
     <string name="or">or</string>
     <string name="Todo">TODO</string>
+    <string name="update_account">Update Account</string>
+    <string name="NM">Name</string>
+    <string name="entername">Enter name:</string>
+    <string name="dept">Department:</string>
+    <string name="mo_no">Mobile no:</string>
+    <string name="name2">Name:</string>
+    <string name="update_name">Update Name</string>
 </resources>
