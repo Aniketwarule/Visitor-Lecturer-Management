@@ -103,8 +103,12 @@
         android:ems="10"
         android:hint="Update name"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="176dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.256" />
 
     <EditText
         android:id="@+id/editTextTextPersonName12"
@@ -113,8 +117,12 @@
         android:ems="10"
         android:hint="Update Mobile no"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="245dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
 
     <EditText
         android:id="@+id/editTextTextPersonName13"
@@ -123,8 +131,12 @@
         android:ems="10"
         android:hint="Update Department"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="314dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454" />
 
     <EditText
         android:id="@+id/editTextTextPersonName14"
@@ -133,8 +145,12 @@
         android:ems="10"
         android:hint="Update Username"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
 
     <EditText
         android:id="@+id/editTextTextPersonName15"
@@ -143,14 +159,22 @@
         android:ems="10"
         android:hint="Update Password"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="456dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="130dp"
         android:layout_height="60dp"
         android:text="Update"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="552dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
 </androidx.constraintlayout.widget.ConstraintLayout>

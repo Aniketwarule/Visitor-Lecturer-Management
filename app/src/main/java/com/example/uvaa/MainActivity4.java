@@ -31,5 +31,15 @@ public class MainActivity4 extends AppCompatActivity {
         Intent i=new Intent(this,MainActivity5.class);
         startActivity(i);
     }
+    public void getDept(View v)
+    {
+        Intent i=new Intent(this,MainActivity8.class);
+        startActivity(i);
+    }
+    public void vPanel(View v)
+    {
+        Intent i=new Intent(this,MainActivity6.class);
+        startActivity(i);
+    }
 
 }
