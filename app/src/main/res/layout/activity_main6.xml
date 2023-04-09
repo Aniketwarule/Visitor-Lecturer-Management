@@ -171,9 +171,10 @@
         android:id="@+id/button15"
         android:layout_width="120dp"
         android:layout_height="60dp"
+        android:onClick="click"
         android:text="submit"
-        android:visibility="gone
-"
+
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
