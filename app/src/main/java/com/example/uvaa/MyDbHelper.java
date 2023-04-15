@@ -47,12 +47,42 @@ public class MyDbHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_ADMIN+" WHERE "+AD_USERNAME+"=? and "+AD_PASSWD+"=?", new String[] {usname,pass});
+
         if(cursor.getCount()>0)
             return true;
         else
             return false;
     }
 
+    public int getid(String uname)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+AD_ID+" FROM "+TABLE_ADMIN+" WHERE "+AD_USERNAME+"=?", new String[] {uname});
+        return cursor.getColumnIndex("id");
+    }
+
+    public void update_admin(String name,String mob,String dep,String user,String pass,String id_user)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(AD_NAME,name);
+        values.put(AD_CON,mob);
+        values.put(AD_DEP,dep);
+        values.put(AD_USERNAME,user);
+        values.put(AD_PASSWD,pass);
+
+        db.update(TABLE_ADMIN,values,AD_ID+"=?",new String[]{id_user});
+    }
+    public boolean checkuser(String user)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_ADMIN+" WHERE "+AD_USERNAME+"=?", new String[] {});
+        if(cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {

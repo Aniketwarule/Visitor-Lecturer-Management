@@ -33,7 +33,14 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View view) {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                String id_user = String.valueOf(db.getid(user));
 
+                //for Testing purpose
+                Toast.makeText(MainActivity3.this, "Sign in Successful", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getApplicationContext(), MainActivity4.class);
+                i.putExtra("id1",id_user);
+                startActivity(i);
+                /*
                 if(user.equals(""))
                 {
                     Toast.makeText(MainActivity3.this,"Username Cannot be Empty",Toast.LENGTH_LONG).show();
@@ -46,11 +53,12 @@ public class MainActivity3 extends AppCompatActivity {
                     }
                     else
                     {
-                        Boolean checkuserpass1 = db.checkuspass(user,pass);
-                        if(checkuserpass1==true)
+                        Boolean chec = db.checkuspass(user,pass);
+                        if(chec==true)
                         {
                             Toast.makeText(MainActivity3.this, "Sign in Successful", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), MainActivity4.class);
+                            i.putExtra("id1",id_user);
                             startActivity(i);
                         }
                         else
@@ -59,6 +67,7 @@ public class MainActivity3 extends AppCompatActivity {
                         }
                     }
                 }
+                */
             }
         });
     }

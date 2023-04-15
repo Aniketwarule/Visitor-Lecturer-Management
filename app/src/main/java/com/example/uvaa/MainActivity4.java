@@ -1,26 +1,19 @@
 package com.example.uvaa;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.text.TextWatcher;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class MainActivity4 extends AppCompatActivity implements View.OnClickListener {
+    CardView c1, c2, c3, c4, c5;
+    MyDbHelper db;
 
-    public CardView c1, c2, c3, c4, c5;
-
-    @SuppressLint("MissingInflatedId")
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new MyDbHelper(this);
         setContentView(R.layout.activity_main4);
         c1 = (CardView) findViewById(R.id.card1);
         c2 = (CardView) findViewById(R.id.card2);
@@ -30,13 +23,15 @@ public class MainActivity4 extends AppCompatActivity implements View.OnClickList
         c1.setOnClickListener(this);
         c2.setOnClickListener(this);
         c3.setOnClickListener(this);
-        c4.setOnClickListener(this);
+        c4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MainActivity7.class);
+                startActivity(i);
+            }
+        });
         c5.setOnClickListener(this);
-
-
     }
-
-
     @Override
     public void onClick(View view) {
         Intent i;
@@ -61,7 +56,6 @@ public class MainActivity4 extends AppCompatActivity implements View.OnClickList
                 i = new Intent(this, MainActivity6.class);
                 startActivity(i);
                 break;
-
         }
     }
 }
