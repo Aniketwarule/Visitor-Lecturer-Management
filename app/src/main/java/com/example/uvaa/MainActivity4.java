@@ -21,7 +21,7 @@ public class MainActivity4 extends AppCompatActivity implements View.OnClickList
         c4 = (CardView) findViewById(R.id.card4);
         c5 = (CardView) findViewById(R.id.card5);
         c1.setOnClickListener(this);
-        c2.setOnClickListener(this);
+        /*c2.setOnClickListener(this);*/
         c3.setOnClickListener(this);
         c4.setOnClickListener(new View.OnClickListener() {
             @Override
