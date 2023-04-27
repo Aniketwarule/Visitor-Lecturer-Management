@@ -7,18 +7,6 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:layout_margin="11dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Enter Year:"
-        android:inputType="textPersonName"
-        android:textColorHint="#252323"
-        />
-
-    <EditText
         android:id="@+id/editTextTextPersonName16"
         android:layout_width="330dp"
         android:layout_height="48dp"
@@ -26,6 +14,17 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Enter Subject Name:"
+        android:inputType="textPersonName"
+        android:textColorHint="#252323" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_margin="11dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter Year:"
         android:inputType="textPersonName"
         android:textColorHint="#252323" />
 
