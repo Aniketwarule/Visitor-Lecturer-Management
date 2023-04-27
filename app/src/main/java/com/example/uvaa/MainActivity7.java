@@ -2,7 +2,6 @@ package com.example.uvaa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,28 +10,29 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity7 extends AppCompatActivity {
-
     EditText up_name,up_mob,up_dep,up_user,up_pass;
     MyDbHelper db;
     Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main7);
 
         up_name = (EditText) findViewById(R.id.editTextTextPersonName11);
         up_mob  = (EditText) findViewById(R.id.editTextTextPersonName12);
         up_dep  = (EditText) findViewById(R.id.editTextTextPersonName13);
         up_user = (EditText) findViewById(R.id.editTextTextPersonName14);
         up_pass = (EditText) findViewById(R.id.editTextTextPersonName15);
-        btn = (Button) findViewById(R.id.button71);
 
+        btn = (Button) findViewById(R.id.btn_update);
 
         db = new MyDbHelper(this);
-        setContentView(R.layout.activity_main7);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = getIntent();
+                String user1 = i.getStringExtra("username");
 
                 String name = up_name.getText().toString();
                 String mob = up_mob.getText().toString();
@@ -42,7 +42,7 @@ public class MainActivity7 extends AppCompatActivity {
 
                 if(name.equals(""))
                 {
-                    Toast.makeText(MainActivity7.this,"Name cannot be Empty",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity7.this,"Name cannot be Empty"+user1,Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -64,7 +64,7 @@ public class MainActivity7 extends AppCompatActivity {
                             }
                             else
                             {
-                                boolean chec = db.checkuser(user);
+                                boolean chec = db.checker(user);
                                 if(chec)
                                 {
                                     Toast.makeText(MainActivity7.this,"Username is already taken",Toast.LENGTH_LONG).show();
@@ -77,7 +77,8 @@ public class MainActivity7 extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        db.update_admin(name,mob,dep,user,pass,"0");
+                                        db.update_admin(name,mob,dep,user,pass,user1);
+                                        Toast.makeText(MainActivity7.this,"Updates successfully",Toast.LENGTH_LONG).show();
                                     }
                                 }
                             }

@@ -3,12 +3,10 @@ package com.example.uvaa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity3 extends AppCompatActivity {
@@ -33,41 +31,33 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View view) {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-                String id_user = String.valueOf(db.getid(user));
+                String id_user = String.valueOf(0);
 
-                //for Testing purpose
-                Toast.makeText(MainActivity3.this, "Sign in Successful", Toast.LENGTH_LONG).show();
+                /*for Testing purpose
+                Toast.makeText(MainActivity3.this, "Sign in Successful "+user+" "+id_user, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getApplicationContext(), MainActivity4.class);
-                i.putExtra("id1",id_user);
+                i.putExtra("username",user);
                 startActivity(i);
-                /*
+                */
                 if(user.equals(""))
                 {
                     Toast.makeText(MainActivity3.this,"Username Cannot be Empty",Toast.LENGTH_LONG).show();
                 }
-                else
-                {
-                    if(pass.equals(""))
-                    {
-                        Toast.makeText(MainActivity3.this,"Password cannot be Empty",Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        Boolean chec = db.checkuspass(user,pass);
-                        if(chec==true)
-                        {
+                else {
+                    if (pass.equals("")) {
+                        Toast.makeText(MainActivity3.this, "Password cannot be Empty", Toast.LENGTH_LONG).show();
+                    } else {
+                        Boolean chec = db.checkuspass(user, pass);
+                        if (chec == true) {
                             Toast.makeText(MainActivity3.this, "Sign in Successful", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), MainActivity4.class);
-                            i.putExtra("id1",id_user);
+                            i.putExtra("username", user);
                             startActivity(i);
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity3.this,"Invalid Credentials",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity3.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
-                */
             }
         });
     }
