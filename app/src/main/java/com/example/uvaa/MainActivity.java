@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MyDbHelper db = new MyDbHelper(this);
+
         SharedPreferences st = PreferenceManager.getDefaultSharedPreferences(this);
         if(!st.getBoolean("firstTime",false))
         {
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("firstTime",true);
             editor.commit();
         }
+
+        //db.createNewTable();
 
     }
     public void activity(View v)
