@@ -29,8 +29,8 @@ public class MainActivity3 extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
+                String user = username.getText().toString().trim();
+                String pass = password.getText().toString().trim();
                 String id_user = String.valueOf(0);
 
                 /*for Testing purpose

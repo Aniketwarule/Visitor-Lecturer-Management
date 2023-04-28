@@ -20,14 +20,12 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String AD_PASSWD = "passwd";
 
     public static final String TABLE_VL = "visitors";
+    public static final String VL_ID = "vlid";
     public static final String VL_NAME = "vlname";
     public static final String VL_MOB = "vlcon";
     public static final String VL_USER = "vluser";
     public static final String VL_PASS = "vlpass";
-    public static final String VL_SUB = "sub";
 
-    public static final String TABLE_SUB = "subjects";
-    public static final String SU_ID = "sid";
     public static final String SU_YEAR = "subyear";
     public static final String SU_SUBNAME = "subname";
     public static final String SU_PRAC = "subprac";
@@ -45,12 +43,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 " TEXT,"+AD_CON+" TEXT,"+AD_DEP+" TEXT,"+AD_USERNAME+" TEXT,"+AD_PASSWD+" TEXT )";
         db.execSQL(tb1);
 
-        String tb2 = "CREATE TABLE "+TABLE_VL+"("+VL_NAME+" TEXT,"+VL_MOB+" TEXT,"+VL_USER+" TEXT,"+VL_PASS+" TEXT,"+VL_SUB+" TEXT )";
+        String tb2 = "CREATE TABLE "+TABLE_VL+"("+VL_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+VL_NAME+" TEXT,"+VL_MOB+" TEXT,"+
+                VL_USER+" TEXT,"+VL_PASS+" TEXT,"+SU_YEAR+ " TEXT,"+SU_SUBNAME+" TEXT,"+SU_PRAC+" TEXT,"+SU_LEC+" TEXT )";
         db.execSQL(tb2);
-
-        String tb3 ="CREATE TABLE "+TABLE_SUB+"("+SU_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+SU_YEAR+
-                " TEXT,"+SU_SUBNAME+" TEXT,"+SU_PRAC+" TEXT,"+SU_LEC+" TEXT )";
-        db.execSQL(tb3);
     }
 
 
