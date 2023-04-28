@@ -7,9 +7,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
-
+    Spinner s;
+    String role[]={"Admin","Visitor"};
+    Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +42,33 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("firstTime",true);
             editor.commit();
         }
+        s=findViewById(R.id.spinner3);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,role);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+
+        b = findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = s.getSelectedItem().toString();
+                if(s1.equals("Admin"))
+                {
+                    Intent i=new Intent(getApplicationContext(),MainActivity3.class);
+                    startActivity(i);
+                }
+                else if(s1.equals("Visitor"))
+                {
+                    Intent i1=new Intent(getApplicationContext(),MainActivity9.class);
+                    startActivity(i1);
+                }
+            }
+        });
+
 
         //db.createNewTable();
 
     }
-    public void activity(View v)
-    {
-        Intent i=new Intent(this,MainActivity3.class);
-        startActivity(i);
-    }
+
 }

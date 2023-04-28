@@ -32,6 +32,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SU_LEC = "sublec";
 
 
+
+
     public MyDbHelper(Context context) {
         super(context,DB_NAME, null, DB_VERSION);
     }
@@ -68,6 +70,17 @@ public class MyDbHelper extends SQLiteOpenHelper {
         else
             return false;
     }
+
+    public boolean checkuspass1(String uname, String pass)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_VL+" WHERE "+VL_USER+"=? and "+VL_PASS+"=?", new String[] {uname,pass});
+
+        if(cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
     public String gedit(String uname)
     {
 
@@ -90,6 +103,18 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
         db.update(TABLE_ADMIN,values,AD_USERNAME+"=?",new String[]{user});
     }
+
+    public void update_visitor(String vluser,String vlpass,String u)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(VL_USER,vluser);
+        values.put(VL_PASS,vlpass);
+
+        db.update(TABLE_VL,values,VL_USER+"=?",new String[]{u});
+    }
+
     public boolean checker(String user)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -98,6 +123,22 @@ public class MyDbHelper extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+
+    public void addVisitor(String vlname,String vlmob,String vluser,String vlpass,String s1,String s2,String s3,String s4)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values1 = new ContentValues();
+        values1.put(VL_NAME,vlname);
+        values1.put(VL_MOB,vlmob);
+        values1.put(VL_USER,vluser);
+        values1.put(VL_PASS,vlpass);
+        values1.put(SU_SUBNAME,s1);
+        values1.put(SU_YEAR,s2);
+        values1.put(SU_LEC,s3);
+        values1.put(SU_PRAC,s4);
+        db.insert(TABLE_VL,null,values1);
     }
 
     @Override

@@ -6,59 +6,35 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+
     <EditText
-        android:id="@+id/editTextTextPersonName16"
+        android:id="@+id/editTextTextPersonName19"
         android:layout_width="330dp"
         android:layout_height="48dp"
         android:layout_margin="11dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Enter Subject Name:"
+        android:hint="Enter Username:"
         android:inputType="textPersonName"
         android:textColorHint="#252323" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextTextPersonName2"
         android:layout_width="330dp"
         android:layout_height="48dp"
         android:layout_margin="11dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Enter Year:"
+        android:hint="Enter Password:"
         android:inputType="textPersonName"
         android:textColorHint="#252323" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName17"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:hint="No. of Lectures to take:"
-        android:inputType="textPersonName"
-        android:textColorHint="#252323"
-        android:gravity="center"
-        android:layout_margin="11dp"
-        />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName18"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:hint="No. of Practicals to take:"
-        android:inputType="textPersonName"
-        android:textColorHint="#252323"
-        android:gravity="center"
-        android:layout_margin="11dp"
-       />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/button7"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_margin="11dp"
         android:gravity="center"
-        android:text="Add" />
-
+        android:text="Update" />
 </LinearLayout>
