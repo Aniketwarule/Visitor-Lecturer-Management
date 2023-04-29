@@ -15,11 +15,11 @@ import android.widget.Toast;
 
 public class MainActivity6 extends AppCompatActivity {
     Button b,b1,b2;
-    TextView t1,t3,t4;
+    TextView t1,t3,t4,t5;
     Spinner s2,s3,s4;
     String[] num={"1","2","3","4"};
     Dialog d;
-    EditText txt1,txt2;
+    EditText txt1,txt2,txt3;
     MyDbHelper db = new MyDbHelper(this);
 
     @Override
@@ -36,10 +36,12 @@ public class MainActivity6 extends AppCompatActivity {
 
         t3=findViewById(R.id.textView32);
         t4=findViewById(R.id.textView33);
+        t5=findViewById(R.id.textView37);
 
         s2=findViewById(R.id.spinner5);
         s3=findViewById(R.id.spinner6);
         s4=findViewById(R.id.spinner7);
+        txt3=findViewById(R.id.editTextTextPersonName20);
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,num);
 
@@ -86,6 +88,8 @@ public class MainActivity6 extends AppCompatActivity {
 
         t3.setVisibility(View.VISIBLE);
         t4.setVisibility(View.VISIBLE);
+        t5.setVisibility(View.VISIBLE);
+        txt3.setVisibility(View.VISIBLE);
 
         s2.setVisibility(View.VISIBLE);
         s3.setVisibility(View.VISIBLE);

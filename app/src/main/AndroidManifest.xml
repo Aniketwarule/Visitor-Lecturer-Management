@@ -13,7 +13,9 @@
         tools:targetApi="31" >
         <activity
             android:name=".MainActivity9"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Nineth Activity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity8"
             android:exported="false"
