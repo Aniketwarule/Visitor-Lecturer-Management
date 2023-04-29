@@ -1,12 +1,19 @@
 package com.example.uvaa;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "VLMDB";
@@ -58,6 +65,22 @@ public class MyDbHelper extends SQLiteOpenHelper {
         values1.put(AD_USERNAME,uname);
         values1.put(AD_PASSWD,pass);
         db.insert(TABLE_ADMIN,null,values1);
+    }
+
+    public String[] get_sub(String uname){
+
+        ArrayList<String> dynamicArray = new ArrayList<String>();
+        int i=0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+SU_SUBNAME+" FROM "+TABLE_VL+" WHERE "+VL_USER+"=?", new String[] {uname});
+
+
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(SU_SUBNAME));
+            dynamicArray.add(name);
+        }
+        String[] s = dynamicArray.toArray(new String[0]);
+        return s;
     }
 
     public boolean checkuspass(String uname, String pass)
