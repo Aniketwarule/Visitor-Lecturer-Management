@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class MainActivity6 extends AppCompatActivity {
     Button b,b1,b2;
     TextView t1,t3,t4;
-    Spinner s2,s3,s4;
+    Spinner s1,s2,s3,s4;
     String[] num={"1","2","3","4"};
     Dialog d;
     EditText txt1,txt2;
@@ -30,6 +30,8 @@ public class MainActivity6 extends AppCompatActivity {
 
         Intent i = getIntent();
         String user = i.getStringExtra("username");
+
+        String[] subjects = db.get_sub(user);
 
         b=findViewById(R.id.button15);
         t1=findViewById(R.id.textView29);
@@ -46,6 +48,10 @@ public class MainActivity6 extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s2.setAdapter(adapter);
         s3.setAdapter(adapter);
+
+
+
+
         d= new Dialog(MainActivity6.this);
         d.setContentView(R.layout.custom_dilog2);
         d.setCancelable(false);

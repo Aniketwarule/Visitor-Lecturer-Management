@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         MyDbHelper db = new MyDbHelper(this);
 
         SharedPreferences st = PreferenceManager.getDefaultSharedPreferences(this);
