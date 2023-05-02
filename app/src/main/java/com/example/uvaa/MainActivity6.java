@@ -75,6 +75,24 @@ public class MainActivity6 extends AppCompatActivity {
         });
 
 
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sub = s4.getSelectedItem().toString();
+                String lec = s2.getSelectedItem().toString();
+                String prac = s3.getSelectedItem().toString();
+                String atte = txt3.getText().toString().trim();
+                db.make_entry(sub,lec,prac,atte,user);
+            }
+        });
+
+        String[] subjects = db.get_sub(user);
+        s4=findViewById(R.id.spinner7);
+        ArrayAdapter<String> adapter1=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,subjects);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s4.setAdapter(adapter1);
+
     }
     public void display(View v)
     {

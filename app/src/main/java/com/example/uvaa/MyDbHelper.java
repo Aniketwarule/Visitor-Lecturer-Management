@@ -32,13 +32,18 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String VL_MOB = "vlcon";
     public static final String VL_USER = "vluser";
     public static final String VL_PASS = "vlpass";
-
     public static final String SU_YEAR = "subyear";
     public static final String SU_SUBNAME = "subname";
     public static final String SU_PRAC = "subprac";
     public static final String SU_LEC = "sublec";
 
-
+    public static final String TABLE_ME = "entries";
+    public static final String ME_ID = "meid";
+    public static final String ME_SUB = "mesub";
+    public static final String ME_LEC = "melec";
+    public static final String ME_PRAC = "meprac";
+    public static final String ME_ATTE = "meatte";
+    public static final String LEC_NAME = "lecturername";
 
 
     public MyDbHelper(Context context) {
@@ -55,6 +60,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String tb2 = "CREATE TABLE "+TABLE_VL+"("+VL_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+VL_NAME+" TEXT,"+VL_MOB+" TEXT,"+
                 VL_USER+" TEXT,"+VL_PASS+" TEXT,"+SU_YEAR+ " TEXT,"+SU_SUBNAME+" TEXT,"+SU_PRAC+" TEXT,"+SU_LEC+" TEXT )";
         db.execSQL(tb2);
+
+        String tb3 = "CREATE TABLE "+TABLE_ME+"("+ME_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+LEC_NAME+" TEXT,"+ME_SUB+
+                " TEXT,"+ME_LEC+" TEXT,"+ME_PRAC+" TEXT,"+ME_ATTE+" TEXT )";
+        db.execSQL(tb3);
     }
 
 
@@ -72,15 +81,28 @@ public class MyDbHelper extends SQLiteOpenHelper {
         ArrayList<String> dynamicArray = new ArrayList<String>();
         int i=0;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT "+SU_SUBNAME+" FROM "+TABLE_VL+" WHERE "+VL_USER+"=?", new String[] {uname});
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_VL+" WHERE "+VL_USER+"=?", new String[] {uname});
 
 
-        if (cursor.moveToFirst()) {
+        while(cursor.moveToNext()) {
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(SU_SUBNAME));
             dynamicArray.add(name);
         }
         String[] s = dynamicArray.toArray(new String[0]);
         return s;
+    }
+
+    public void make_entry(String sub,String lec,String prac,String atte,String user)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values1 = new ContentValues();
+        values1.put(ME_SUB,sub);
+        values1.put(LEC_NAME,user);
+        values1.put(ME_LEC,lec);
+        values1.put(ME_PRAC,prac);
+        values1.put(ME_ATTE,atte);
+
+        db.insert(TABLE_ME,null,values1);
     }
 
     public boolean checkuspass(String uname, String pass)
