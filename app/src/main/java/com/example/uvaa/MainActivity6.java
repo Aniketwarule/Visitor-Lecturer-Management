@@ -2,16 +2,20 @@ package com.example.uvaa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class MainActivity6 extends AppCompatActivity {
     Button b,b1,b2;
@@ -21,7 +25,7 @@ public class MainActivity6 extends AppCompatActivity {
     String[] slot={"10:30-11:30","11:30-12:30","12:30-1:30","2:00-3:00","3:00-4:00","4:15-5:15","5:15-6:15"};
     String[] slot1={"10:30-12:30","11:30-1:30","2:00-4:00","4:15-6:15"};
     Dialog d;
-    EditText txt1,txt2,txt3;
+    EditText txt1,txt2,txt3,txt4;
     MyDbHelper db = new MyDbHelper(this);
 
     @Override
@@ -92,7 +96,29 @@ public class MainActivity6 extends AppCompatActivity {
             }
         });
 
+        txt4 = findViewById(R.id.editTextTextPersonName21);
 
+        txt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dPD = new DatePickerDialog(
+                        MainActivity6.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                txt4.setText(dayOfMonth+"-"+month+"-"+year);
+                            }
+                        },
+                year,month,day);
+                dPD.show();
+            }
+        });
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
