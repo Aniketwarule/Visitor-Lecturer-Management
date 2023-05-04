@@ -44,6 +44,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String ME_PRAC = "meprac";
     public static final String ME_ATTE = "meatte";
     public static final String LEC_NAME = "lecturername";
+    public static final String LEC_DATE="lecturedate";
 
 
     public MyDbHelper(Context context) {
@@ -62,7 +63,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL(tb2);
 
         String tb3 = "CREATE TABLE "+TABLE_ME+"("+ME_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+LEC_NAME+" TEXT,"+ME_SUB+
-                " TEXT,"+ME_LEC+" TEXT,"+ME_PRAC+" TEXT,"+ME_ATTE+" TEXT )";
+                " TEXT,"+ME_LEC+" TEXT,"+ME_PRAC+" TEXT,"+ME_ATTE+" TEXT,"+LEC_DATE+" TEXT )";
         db.execSQL(tb3);
     }
 
@@ -92,7 +93,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         return s;
     }
 
-    public void make_entry(String sub,String lec,String prac,String atte,String user)
+    public void make_entry(String sub,String lec,String prac,String atte,String user,String lecdate)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values1 = new ContentValues();
@@ -101,6 +102,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         values1.put(ME_LEC,lec);
         values1.put(ME_PRAC,prac);
         values1.put(ME_ATTE,atte);
+        values1.put(LEC_DATE,lecdate);
 
         db.insert(TABLE_ME,null,values1);
     }

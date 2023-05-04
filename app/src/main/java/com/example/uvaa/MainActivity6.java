@@ -25,7 +25,7 @@ public class MainActivity6 extends AppCompatActivity {
     String[] slot={"10:30-11:30","11:30-12:30","12:30-1:30","2:00-3:00","3:00-4:00","4:15-5:15","5:15-6:15"};
     String[] slot1={"10:30-12:30","11:30-1:30","2:00-4:00","4:15-6:15"};
     Dialog d;
-    EditText txt1,txt2,txt3,txt4;
+    EditText txt1,txt2,txt3,txt4,txt5;
     MyDbHelper db = new MyDbHelper(this);
 
     @Override
@@ -53,6 +53,7 @@ public class MainActivity6 extends AppCompatActivity {
         s6=findViewById(R.id.spinner8);
 
         txt3=findViewById(R.id.editTextTextPersonName20);
+        txt5=findViewById(R.id.editTextTextPersonName21);
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,num);
 
@@ -127,7 +128,8 @@ public class MainActivity6 extends AppCompatActivity {
                 String lec = s2.getSelectedItem().toString();
                 String prac = s3.getSelectedItem().toString();
                 String atte = txt3.getText().toString().trim();
-                db.make_entry(sub,lec,prac,atte,user);
+                String date= txt4.getText().toString();
+                db.make_entry(sub,lec,prac,atte,user,date);
             }
         });
 
@@ -154,10 +156,12 @@ public class MainActivity6 extends AppCompatActivity {
         t6.setVisibility(View.VISIBLE);
         t7.setVisibility(View.VISIBLE);
         txt3.setVisibility(View.VISIBLE);
-
+        txt5.setVisibility(View.VISIBLE);
         s2.setVisibility(View.VISIBLE);
         s3.setVisibility(View.VISIBLE);
         s4.setVisibility(View.VISIBLE);
+        s5.setVisibility(View.VISIBLE);
+        s6.setVisibility(View.VISIBLE);
     }
     public void click(View v)
     {

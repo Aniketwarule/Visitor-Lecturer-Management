@@ -80,7 +80,7 @@
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:fontFamily="serif"
-        android:text="Visitor Lecturer"
+        android:text="Visiting  Lecturer"
         android:textColor="#120F0F"
         android:textColorHint="#191616"
         android:textSize="30sp"

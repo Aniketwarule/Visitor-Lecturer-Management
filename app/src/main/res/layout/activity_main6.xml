@@ -82,26 +82,26 @@
 
     <Spinner
         android:id="@+id/spinner5"
-        android:layout_width="160dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@android:drawable/btn_dropdown"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.585" />
 
     <Spinner
         android:id="@+id/spinner6"
-        android:layout_width="160dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@android:drawable/btn_dropdown"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.741" />
@@ -150,7 +150,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.528" />
@@ -166,7 +166,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.678" />
@@ -218,9 +218,10 @@
 
     <Spinner
         android:id="@+id/spinner4"
-        android:layout_width="160dp"
+        android:layout_width="140dp"
         android:layout_height="50dp"
         android:visibility="invisible"
+        android:background="@android:drawable/btn_dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.936"
@@ -230,9 +231,10 @@
 
     <Spinner
         android:id="@+id/spinner8"
-        android:layout_width="160dp"
+        android:layout_width="140dp"
         android:layout_height="50dp"
         android:visibility="invisible"
+        android:background="@android:drawable/btn_dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.936"
@@ -245,8 +247,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Enter date"
         android:inputType="textPersonName"
-        android:text="Enter date"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
