@@ -7,13 +7,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "VLMDB";
@@ -40,8 +44,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_ME = "entries";
     public static final String ME_ID = "meid";
     public static final String ME_SUB = "mesub";
-    public static final String ME_LEC = "melec";
-    public static final String ME_PRAC = "meprac";
+    public static final String ME_TYPE = "metype";
+    public static final String ME_SLOT = "meslot";
     public static final String ME_ATTE = "meatte";
     public static final String LEC_NAME = "lecturername";
     public static final String LEC_DATE="lecturedate";
@@ -63,7 +67,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL(tb2);
 
         String tb3 = "CREATE TABLE "+TABLE_ME+"("+ME_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+LEC_NAME+" TEXT,"+ME_SUB+
-                " TEXT,"+ME_LEC+" TEXT,"+ME_PRAC+" TEXT,"+ME_ATTE+" TEXT,"+LEC_DATE+" TEXT )";
+                " TEXT,"+ME_TYPE+" TEXT,"+ME_SLOT+" TEXT,"+ME_ATTE+" TEXT,"+LEC_DATE+" TEXT )";
         db.execSQL(tb3);
     }
 
@@ -93,14 +97,30 @@ public class MyDbHelper extends SQLiteOpenHelper {
         return s;
     }
 
-    public void make_entry(String sub,String lec,String prac,String atte,String user,String lecdate)
+    public String[] get_visitors()
+    {
+        ArrayList<String> dynamicArray = new ArrayList<String>();
+        int i=0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT DISTINCT "+VL_NAME+" FROM "+TABLE_VL,null);
+
+
+        while(cursor.moveToNext()) {
+            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(VL_NAME));
+            dynamicArray.add(name);
+        }
+        String[] s = dynamicArray.toArray(new String[0]);
+        return s;
+    }
+
+    public void make_entry(String sub,String type,String slot,String atte,String user,String lecdate)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values1 = new ContentValues();
         values1.put(ME_SUB,sub);
         values1.put(LEC_NAME,user);
-        values1.put(ME_LEC,lec);
-        values1.put(ME_PRAC,prac);
+        values1.put(ME_TYPE,type);
+        values1.put(ME_SLOT,slot);
         values1.put(ME_ATTE,atte);
         values1.put(LEC_DATE,lecdate);
 
@@ -188,7 +208,56 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.insert(TABLE_VL,null,values1);
     }
 
-    @Override
+    public String[][] get_entry(String mon,int index)
+    {
+        int gap=0;
+        int day=1;
+        String[][] s = new String[12][10];
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.getDefault());
+        Date date = new Date(2023,index,0);
+        String weekday = sdf.format(date);
+        if(weekday.equals("Monday"))
+            gap=0;
+        else if (weekday.equals("Tuesday"))
+            gap=1;
+        else if (weekday.equals("Wednesday"))
+            gap=2;
+        else if (weekday.equals("Thursday"))
+            gap=3;
+        else if (weekday.equals("Friday"))
+            gap=4;
+        else if (weekday.equals("Saturday"))
+            gap=5;
+
+        index++;
+
+        for(int i=0;i<10;i+=2,day++)
+        {
+            for(int j=gap*2;j<12;j+=2) {
+                String d = day + "-" + index + "-2023";
+                SQLiteDatabase db = this.getReadableDatabase();
+                Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_ME + " WHERE " + LEC_DATE + "=? AND " + ME_TYPE + "=?", new String[]{d, "Lec"});
+                if (cursor.getCount() > 0) {
+                    s[j][i] = Integer.toString(cursor.getCount());
+                }
+                else
+                {
+                    s[j][i]="";
+                }
+
+                Cursor cursor1 = db.rawQuery("SELECT * FROM "+TABLE_ME+" WHERE "+LEC_DATE+"=? AND "+ME_TYPE+"=?", new String[] {d,"Prac"});
+                if(cursor1.getCount()>0)
+                    s[j][i+1]=Integer.toString(cursor1.getCount());
+                else
+                    s[j][i+1]="";
+
+                day++;
+            }
+            gap=0;
+        }
+        return s;
+    }
+        @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_ADMIN);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_VL);

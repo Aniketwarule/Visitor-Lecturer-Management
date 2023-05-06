@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class MainActivity4 extends AppCompatActivity implements View.OnClickListener {
-    CardView c1, c2, c3, c4, c5;
+    CardView c1, c2, c3, c4;
     MyDbHelper db;
 
     @Override
@@ -25,7 +25,6 @@ public class MainActivity4 extends AppCompatActivity implements View.OnClickList
         c2 = (CardView) findViewById(R.id.card2);
         c3 = (CardView) findViewById(R.id.card3);
         c4 = (CardView) findViewById(R.id.card4);
-        c5 = (CardView) findViewById(R.id.card5);
         c1.setOnClickListener(this);
         /*c2.setOnClickListener(this);*/
         c3.setOnClickListener(this);
@@ -37,8 +36,15 @@ public class MainActivity4 extends AppCompatActivity implements View.OnClickList
                 startActivity(i);
             }
         });
-        c5.setOnClickListener(this);
+        c2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),generate_bill.class);
+                startActivity(i);
+            }
+        });
     }
+
     @Override
     public void onClick(View view) {
         Intent i;
@@ -59,10 +65,6 @@ public class MainActivity4 extends AppCompatActivity implements View.OnClickList
                 i = new Intent(this, MainActivity7.class);
                 startActivity(i);
                 break; */
-            case R.id.card5:
-                i = new Intent(this, MainActivity6.class);
-                startActivity(i);
-                break;
         }
     }
 }

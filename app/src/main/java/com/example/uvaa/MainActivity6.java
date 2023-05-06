@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,9 +20,9 @@ import java.util.Calendar;
 
 public class MainActivity6 extends AppCompatActivity {
     Button b,b1,b2;
-    TextView t1,t3,t4,t5,t6,t7;
-    Spinner s2,s3,s4,s5,s6;
-    String[] num={"1","2","3","4"};
+    TextView t1,t3,t5,t6;
+    Spinner s4,s5,s7;
+    String[] type={"Lec","Prac"};
     String[] slot={"10:30-11:30","11:30-12:30","12:30-1:30","2:00-3:00","3:00-4:00","4:15-5:15","5:15-6:15"};
     String[] slot1={"10:30-12:30","11:30-1:30","2:00-4:00","4:15-6:15"};
     Dialog d;
@@ -41,35 +42,52 @@ public class MainActivity6 extends AppCompatActivity {
         t1=findViewById(R.id.textView29);
 
         t3=findViewById(R.id.textView32);
-        t4=findViewById(R.id.textView33);
         t5=findViewById(R.id.textView37);
         t6=findViewById(R.id.textView);
-        t7=findViewById(R.id.textView42);
 
-        s2=findViewById(R.id.spinner5);
-        s3=findViewById(R.id.spinner6);
-        s4=findViewById(R.id.spinner7);
-        s5=findViewById(R.id.spinner4);
-        s6=findViewById(R.id.spinner8);
+        s5=findViewById(R.id.spinner5);
+        s7=findViewById(R.id.spinner7);
+        s4=findViewById(R.id.spinner4);
 
         txt3=findViewById(R.id.editTextTextPersonName20);
         txt5=findViewById(R.id.editTextTextPersonName21);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,num);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s2.setAdapter(adapter);
-        s3.setAdapter(adapter);
+        String[] subjects = db.get_sub(user);
+        s7=findViewById(R.id.spinner7);
+        ArrayAdapter<String> adapter1=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,subjects);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s7.setAdapter(adapter1);
 
-        ArrayAdapter<String> a=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,slot);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s5.setAdapter(a);
+        ArrayAdapter<String> adapter2=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,type);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s5.setAdapter(adapter2);
 
-        ArrayAdapter<String> ad=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,slot1);
+        ArrayAdapter<String> adapter3=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s4.setAdapter(adapter3);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s6.setAdapter(ad);
+        s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Update the options of the ArrayAdapter for Spinner 2 based on the selected value of Spinner 1
+                String selectedOption = (String) parent.getItemAtPosition(position);
+                if (selectedOption.equals("Lec")) {
+                    adapter3.clear();
+                    adapter3.addAll(slot);
+                } else if (selectedOption.equals("Prac")) {
+                    adapter3.clear();
+                    adapter3.addAll(slot1);
+                }
+                adapter3.notifyDataSetChanged();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
 
         d= new Dialog(MainActivity6.this);
         d.setContentView(R.layout.custom_dilog2);
@@ -112,8 +130,9 @@ public class MainActivity6 extends AppCompatActivity {
                         MainActivity6.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                txt4.setText(dayOfMonth+"-"+month+"-"+year);
+                            public void onDateSet(DatePicker view, int year, int month, int day) {
+                                month++;
+                                txt4.setText(day+"-"+month+"-"+year);
                             }
                         },
                 year,month,day);
@@ -124,20 +143,14 @@ public class MainActivity6 extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sub = s4.getSelectedItem().toString();
-                String lec = s2.getSelectedItem().toString();
-                String prac = s3.getSelectedItem().toString();
+                String sub = s7.getSelectedItem().toString().trim();
+                String type = s5.getSelectedItem().toString().trim();
+                String slot = s4.getSelectedItem().toString().trim();
                 String atte = txt3.getText().toString().trim();
                 String date= txt4.getText().toString();
-                db.make_entry(sub,lec,prac,atte,user,date);
+                db.make_entry(sub,type,slot,atte,user,date);
             }
         });
-
-        String[] subjects = db.get_sub(user);
-        s4=findViewById(R.id.spinner7);
-        ArrayAdapter<String> adapter1=new ArrayAdapter<String>(MainActivity6.this,android.R.layout.simple_spinner_item,subjects);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s4.setAdapter(adapter1);
 
     }
     public void display(View v)
@@ -149,19 +162,15 @@ public class MainActivity6 extends AppCompatActivity {
     {
         b.setVisibility(View.VISIBLE);
         t1.setVisibility(View.VISIBLE);
-
         t3.setVisibility(View.VISIBLE);
-        t4.setVisibility(View.VISIBLE);
         t5.setVisibility(View.VISIBLE);
         t6.setVisibility(View.VISIBLE);
-        t7.setVisibility(View.VISIBLE);
         txt3.setVisibility(View.VISIBLE);
         txt5.setVisibility(View.VISIBLE);
-        s2.setVisibility(View.VISIBLE);
-        s3.setVisibility(View.VISIBLE);
+        s7.setVisibility(View.VISIBLE);
         s4.setVisibility(View.VISIBLE);
         s5.setVisibility(View.VISIBLE);
-        s6.setVisibility(View.VISIBLE);
+
     }
     public void click(View v)
     {
